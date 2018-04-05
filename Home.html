@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="This is the webpage of NCKU Agriculture IOT System.">
+  <meta name="author" content="Shih Yu">
+
+  <link href="./images/leaf.ico" rel="SHORTCUT ICON">
+  <title>物聯網農業系統</title>
+
+  <!-- Bootstrap core CSS, JS-->
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+  <!--上方導覽列-->
+  <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="Home.html">🌱NCKU IOT </a>
+    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+    <ul class="navbar-nav px-3">
+      <li class="nav-item text-nowrap">
+        <a class="nav-link" href="#">Sign out</a>
+      </li>
+    </ul>
+  </nav>
+
+
+  <div class="container-fluid">
+    <div class="row">
+      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+            <!--vertical direction nav-->
+            <li class="nav-item">
+              <a class="nav-link active" href="Home.html">
+                <span data-feather="monitor"></span>
+                Monitor
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="Dashboard.html">
+                <span data-feather="activity"></span>
+                Dashboard
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="Form.html">
+                <span data-feather="file-text"></span>
+                Form
+              </a>
+            </li>
+          </ul>
+
+          <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Saved reports</span>
+            <a class="d-flex align-items-center text-muted" href="#">
+              <span data-feather="plus-circle"></span>
+            </a>
+          </h6>
+          <ul class="nav flex-column mb-2">
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="file-text"></span>
+                Current month
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="file-text"></span>
+                Last month
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="file-text"></span>
+                History
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+          <h1 class="h2">Monitor</h1>
+          <button type="button" onclick="connect()">Connect</button>
+          <!--<div class="btn-toolbar mb-2 mb-md-0">
+              <div class="btn-group mr-2">
+                <button class="btn btn-sm btn-outline-secondary">Share</button>
+                <button class="btn btn-sm btn-outline-secondary">Export</button>
+              </div>
+              <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
+                <span data-feather="calendar"></span>
+                This week
+              </button>
+            </div>-->
+        </div>
+
+        <!--各項即時數據-->
+        <div class="row">
+
+          <div class="col-sm-4" style="height:90px">
+            <!--溫度-->
+            <div class="well">
+              <span data-feather="thermometer"></span>
+              <label>Temperature(~C)</label>
+              <!--<input type="text" name="temp" id="temp" value="" />-->
+			  <!--<li style="line-height:25px" class="list-group-item" name="temp1" id="temp1"></li>-->
+              <h1 id="temp" style="max-height:24px"></h1>
+            </div>
+          </div>
+          <div class="col-sm-4" style="height:90px">
+            <!--溼度-->
+            <div class="well">
+              <span data-feather="droplet"></span>
+              <label>Humidity(%)</label>
+              <h2 id="humid" style="max-height:24px"></h2>
+            </div>
+          </div>
+          <div class="col-sm-4" style="height:90px">
+            <!--亮度-->
+            <div class="well">
+              <span data-feather="sun"></span>
+              <label>Light(mV)</label>
+              <h2 id="light" style="max-height:24px"></h2>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4" style="margin-top: 50px; height:90px">
+            <!--紫外線-->
+            <div class="well">
+              <span data-feather="zap"></span>
+              <label>UV(mV)</label>
+              <h2 id="uv" style="max-height:24px"></h2>
+            </div>
+          </div>
+          <div class="col-sm-4" style="margin-top: 50px; height:90px">
+            <!--土壤-->
+            <div class="well">
+              <span data-feather="feather"></span>
+              <label>Soil(mV)</label>
+              <h2 id="soil" style="max-height:24px"></h2>
+            </div>
+          </div>
+          <div class="col-sm-4" style="margin-top: 50px; height:90px">
+            <!--氣壓-->
+            <div class="well">
+              <span data-feather="cloud"></span>
+              <label>Pressure(kPa)</label>
+              <h2 id="press" style="max-height:24px"></h2>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+
+  <!-- Bootstrap core JavaScript==================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+  <script>
+    feather.replace()
+  </script>
+  <script src="js/browserMqtt.js"></script>
+  <script src="js/home.js"></script>
+
+</body>
+
+</html>
